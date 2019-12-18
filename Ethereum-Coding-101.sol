@@ -1,6 +1,7 @@
+import "./Ownable.sol";
 pragma solidity 0.5.12;
 
-contract personInfo{
+contract personInfo is Ownable{
     struct person{
         string name;
         uint age;
@@ -12,16 +13,7 @@ contract personInfo{
     
     event personDeleted(string name,address owner);
     
-    address owner;
     
-    constructor() public{
-        owner = msg.sender;
-    }
-    
-    modifier onlyOwner(){
-        require(msg.sender == owner);require(msg.sender == owner,"Sender must be the owner.");
-        _; //continue execution
-    }
 
     modifier costs(uint cost){
         require(msg.value >= cost);
